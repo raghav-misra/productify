@@ -9,7 +9,7 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-    <div class="jumbotron">
+    <header class="jumbotron">
         <code class="display-4">Vanilla JS Todo List</code>
         <hr>
         <code class="lead">
@@ -17,10 +17,17 @@
             <a href="https://www.typescriptlang.org/">TypeScript</a> |
             <a href="https://facebook.github.io/jsx/">JSX</a>
         </code>
-    </div>
+    </header>
 
-    <div class="section">
-        eeee
-    </div>
+    <section class="container section">
+        <form class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="What do you need to do?" aria-label="What do you need to do?" required>
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit">Add Todo Item ✔️</button>
+            </div>
+        </form>
+    </section>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
