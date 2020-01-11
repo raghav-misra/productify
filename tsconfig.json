@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "h",
+        "module": "ES6",
+        "target": "ES6",
+        "outDir": "./js"
+    },
+    
+    "src": [
+        "./ts"
+    ]
+}
