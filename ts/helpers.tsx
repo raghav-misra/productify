@@ -29,7 +29,7 @@ export function h(tagName: string, props: IAttributes, ...children: (string | No
 }
 
 /* Better appendChild */
-export function render(child: (Node | string), parent: Node) {
+export function render(child: (Node | string | void), parent: Node) {
     // If it's a string
     if(typeof(child) === "string") {
         parent.appendChild(
@@ -42,4 +42,19 @@ export function render(child: (Node | string), parent: Node) {
 
     // Else (assume it's a node):
     else parent.appendChild(child);
+}
+
+export class Component extends HTMLElement {
+    // Render on connected
+    connectedCallback() {
+        render(this.render, this);
+    }
+
+    // Remove on disconnected
+    disconnectedCallback() {
+        while(this.firstChild) this.removeChild(this.firstChild);
+    }
+
+    // this.render returns children
+    get render() { return; }
 }
