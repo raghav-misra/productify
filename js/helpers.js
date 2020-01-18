@@ -1,46 +1,71 @@
-/* Element Factory */
-export function h(tagName, props, ...children) {
-    // Make sure everything is defined:
-    props = props || {};
-    children = children || [];
-    // Initialize element:
-    const element = document.createElement(tagName);
-    // Add props:
-    Object.keys(props).forEach((name) => {
-        // If it is an event:
-        if (typeof (props[name]) === "function" && name.startsWith("$")) {
-            element.addEventListener(name, props[name]);
-        }
-        // Otherwise it's an attribute:
-        else
-            element.setAttribute(name, props[name]);
-    });
-    // Add children:
-    children.forEach(child => render(child, element));
+// Array.flat replacement:
+function flatten(arr) {
+    return arr.reduce((flat, toFlatten) => {
+        return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+    }, []);
 }
-/* Better appendChild */
-export function render(child, parent) {
-    // If it's a string
-    if (typeof (child) === "string") {
-        parent.appendChild(document.createTextNode(child));
+// Add Props to an HTMLElement:
+function addProps(element, props) {
+    Object.keys(props).forEach((k) => {
+        if (!props.hasOwnProperty(k))
+            return;
+        // Create Key & Value
+        const key = k.trim().toLowerCase();
+        const value = props[k];
+        // If Event:
+        if (key.startsWith("$") && (typeof value).toLowerCase() === "function") {
+            element.addEventListener(key.replace("$", ""), value);
+        }
+        // If Style:
+        else if (key === "style" && (typeof value).toLowerCase() === "object") {
+            let styleTag = "";
+            Object.keys(value).forEach((rule) => {
+                if (!value.hasOwnProperty(rule))
+                    return;
+                styleTag += `${rule.trim()}:${value[rule].toString().trim()};`;
+            });
+            element.setAttribute("style", styleTag);
+        }
+        // If ClassName:
+        else if (key === "classname" && Array.isArray(value)) {
+            element.setAttribute("class", value.join(" "));
+        }
+        // If className no array:
+        else if (key === "classname") {
+            element.setAttribute("class", value);
+        }
+        // Fallback:
+        else {
+            element.setAttribute(key, value);
+        }
+    });
+}
+// Factory Function:
+export function h(tag, props = {}, ...children) {
+    props = props || Object.create(null);
+    children = flatten(children);
+    // If Function:
+    if ((typeof tag).toLowerCase() === "function") {
+        return tag(props, children);
     }
-    // If it's falsy:
-    else if (!child)
-        return;
-    // Else (assume it's a node):
+    // Create Element/Fragment:
+    let element;
+    if (tag == "fragment") {
+        element = document.createDocumentFragment();
+    }
+    else {
+        element = document.createElement(tag);
+        // Add props:
+        addProps(element, props);
+    }
+    // Render Children:
+    children.forEach(child => render(child, element));
+    return element;
+}
+// Render Function:
+export function render(child, parent = document.body) {
+    if ((typeof child) === "string")
+        parent.appendChild(document.createTextNode(child));
     else
         parent.appendChild(child);
-}
-export class Component extends HTMLElement {
-    // Render on connected
-    connectedCallback() {
-        render(this.render, this);
-    }
-    // Remove on disconnected
-    disconnectedCallback() {
-        while (this.firstChild)
-            this.removeChild(this.firstChild);
-    }
-    // this.render returns children
-    get render() { return; }
 }
