@@ -15,3 +15,8 @@ hr {
         padding: 4rem 2rem;
     }
 }
+
+/* Style Custom Elements */
+todo-item, todo-list {
+    display: block;
+}
