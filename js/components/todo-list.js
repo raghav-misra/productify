@@ -4,7 +4,7 @@ export class TodoList extends HTMLElement {
         // Render Children
         render((h("fragment", null,
             h("div", null,
-                h("a", { className: "text-info" }, "Clear")),
+                h("a", { className: "text-info", "$click": this.clearItems.bind(this) }, "Clear")),
             h("div", { "data-item-target": true }))), this);
         this.renderTarget = this.querySelector("[data-item-target]");
         this.getStorage();
@@ -25,13 +25,21 @@ export class TodoList extends HTMLElement {
     setStorage() {
         const todoArray = [];
         this.renderTarget.querySelectorAll("todo-item").forEach((item) => {
-            if (item.hasAttribute("data-todo"))
-                todoArray.push(item.getAttribute("data-todo"));
+            if (item.dataset.todo)
+                todoArray.push(item.dataset.todo);
         });
         window.localStorage.setItem("$DATA$", JSON.stringify(todoArray));
     }
     getStorage() {
         const items = JSON.parse(window.localStorage.getItem("$DATA$") || "[]");
         items.forEach(((name) => this.addItem(name)).bind(this));
+    }
+    clearItems() {
+        if (confirm("Are you sure you want to clear all items?")) {
+            while (this.renderTarget.firstChild) {
+                this.renderTarget.removeChild(this.renderTarget.firstChild);
+            }
+            this.setStorage();
+        }
     }
 }

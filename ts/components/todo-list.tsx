@@ -1,6 +1,6 @@
 import { h, render } from '../helpers.js';
 
-export class TodoList extends HTMLElement {
+export class TodoList extends HTMLElement implements ITodoList {
     renderTarget: HTMLDivElement;
 
     connectedCallback() {
@@ -8,7 +8,7 @@ export class TodoList extends HTMLElement {
         render((
             <fragment>
                 <div>
-                    <a className="text-info">Clear</a>
+                    <a className="text-info" $click={ this.clearItems.bind(this) }>Clear</a>
                 </div>
                 <div data-item-target></div>
             </fragment>
@@ -41,7 +41,7 @@ export class TodoList extends HTMLElement {
     setStorage() {
         const todoArray = [];
         this.renderTarget.querySelectorAll("todo-item").forEach((item: HTMLElement) => {
-            if (item.hasAttribute("data-todo")) todoArray.push(item.getAttribute("data-todo"));
+            if (item.dataset.todo) todoArray.push(item.dataset.todo);
         });
 
         window.localStorage.setItem("$DATA$", JSON.stringify(todoArray));
@@ -54,4 +54,26 @@ export class TodoList extends HTMLElement {
             (name) => this.addItem(name)
         ).bind(this));
     }
+
+    clearItems() {
+        if(confirm("Are you sure you want to clear all items?")) {
+            while(this.renderTarget.firstChild) {
+                this.renderTarget.removeChild(this.renderTarget.firstChild);
+            }
+
+            this.setStorage();
+        }
+    }
+}
+
+export interface ITodoList {
+    renderTarget: HTMLDivElement;
+
+    connectedCallback(): void;
+
+    addItem(itemString: string): void;
+    removeItem(existingItem: HTMLElement): void;
+
+    setStorage(): void;
+    getStorage(): void;
 }
