@@ -3,6 +3,13 @@ hr {
     border-color: white !important;
 }
 
+.title {
+    left: 90px;
+    position: relative;
+    border-left: 2px #e83e8c solid;
+    padding-left: 20px;
+}
+
 /* Better Container */
 .section {
     margin-bottom: 2rem;
@@ -14,6 +21,11 @@ hr {
     .section {
         padding: 4rem 2rem;
     }
+}
+
+/* Constant Jumbo padding */
+.jumbotron {
+    padding: 2rem 1rem !important;
 }
 
 /* Style Custom Elements */
