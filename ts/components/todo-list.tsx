@@ -2,6 +2,7 @@ import { h, render } from '../helpers.js';
 
 export class TodoList extends HTMLElement implements ITodoList {
     renderTarget: HTMLDivElement;
+    storageKey: string;
 
     connectedCallback() {
         // Render Children
@@ -15,8 +16,6 @@ export class TodoList extends HTMLElement implements ITodoList {
         ), this);
 
         this.renderTarget = this.querySelector("[data-item-target]");
-
-        this.getStorage();
     }
 
     /* Add & Remove 'Listeners' */
@@ -44,11 +43,11 @@ export class TodoList extends HTMLElement implements ITodoList {
             if (item.dataset.todo) todoArray.push(item.dataset.todo);
         });
 
-        window.localStorage.setItem("$DATA$", JSON.stringify(todoArray));
+        window.localStorage.setItem(this.storageKey, JSON.stringify(todoArray));
     }
 
     getStorage() {
-        const items = JSON.parse(window.localStorage.getItem("$DATA$") || "[]");
+        const items = JSON.parse(window.localStorage.getItem(this.storageKey) || "[]");
 
         items.forEach((
             (name) => this.addItem(name)

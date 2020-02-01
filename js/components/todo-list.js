@@ -7,7 +7,6 @@ export class TodoList extends HTMLElement {
                 h("a", { className: "text-info", "$click": this.clearItems.bind(this) }, "Clear")),
             h("div", { "data-item-target": true }))), this);
         this.renderTarget = this.querySelector("[data-item-target]");
-        this.getStorage();
     }
     /* Add & Remove 'Listeners' */
     addItem(itemString) {
@@ -28,10 +27,10 @@ export class TodoList extends HTMLElement {
             if (item.dataset.todo)
                 todoArray.push(item.dataset.todo);
         });
-        window.localStorage.setItem("$DATA$", JSON.stringify(todoArray));
+        window.localStorage.setItem(this.storageKey, JSON.stringify(todoArray));
     }
     getStorage() {
-        const items = JSON.parse(window.localStorage.getItem("$DATA$") || "[]");
+        const items = JSON.parse(window.localStorage.getItem(this.storageKey) || "[]");
         items.forEach(((name) => this.addItem(name)).bind(this));
     }
     clearItems() {

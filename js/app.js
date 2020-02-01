@@ -11,3 +11,16 @@ addTodoForm.addEventListener("submit", (event) => {
 });
 /* TodoList Node */
 const todoList = document.querySelector("todo-list");
+/* Choose localStorage entry */
+let storageKey = decodeURI(location.search.replace("?", "")).trim();
+if (storageKey == "") {
+    const tmpKey = prompt("What is the name of your list? Or make a new list by typing in the desired name.") || "";
+    if (!tmpKey)
+        location.href = "/";
+    else
+        storageKey = tmpKey.trim().toLowerCase();
+}
+todoList.storageKey = "@list<>" + storageKey;
+todoList.getStorage();
+document.getElementById("todoName").innerText = `- ${storageKey}`;
+document.querySelector("title").innerText = `Productify - ${storageKey}`;
