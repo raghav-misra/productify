@@ -12,9 +12,10 @@ let addTodoForm = document.forms[0];
 
 addTodoForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    render((
-        <todo-item 
-            data-todo={ (addTodoForm.querySelector("input") as HTMLInputElement).value.trim() } 
-        />
-    ), document.querySelector("todo-list"));
+    todoList.addItem(
+        (addTodoForm.querySelector("input") as HTMLInputElement).value.trim()
+    );
 });
+
+/* TodoList Node */
+const todoList: TodoList = document.querySelector("todo-list");

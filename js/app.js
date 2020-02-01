@@ -1,4 +1,3 @@
-import { h, render } from './helpers.js';
 /* Initialize Custom Elements */
 import { TodoItem } from './components/todo-item.js';
 import { TodoList } from './components/todo-list.js';
@@ -8,5 +7,7 @@ customElements.define("todo-list", TodoList);
 let addTodoForm = document.forms[0];
 addTodoForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    render((h("todo-item", { "data-todo": addTodoForm.querySelector("input").value.trim() })), document.querySelector("todo-list"));
+    todoList.addItem(addTodoForm.querySelector("input").value.trim());
 });
+/* TodoList Node */
+const todoList = document.querySelector("todo-list");
