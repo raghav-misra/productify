@@ -24,5 +24,5 @@ if (storageKey == "") {
 }
 todoList.storageKey = "@list<>" + storageKey;
 todoList.getStorage();
-document.getElementById("todoName").innerText = `- ${storageKey}`;
+document.getElementById("todoName").innerText = `${storageKey}`;
 document.querySelector("title").innerText = `Productify - ${storageKey}`;
