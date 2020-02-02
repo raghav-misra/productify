@@ -38,12 +38,12 @@ export class MenuBar extends HTMLElement {
                 position: relative;
             }
 
-            menu-bar a {
+            menu-bar code {
                 position: absolute; 
                 left: 10px; 
                 display: block; 
                 padding: 2.5px; 
-                font-size: 1.25em;
+                font-size: 1em;
             }
         `).replace("\n", "");
         document.body.appendChild(style);

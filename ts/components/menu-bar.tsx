@@ -27,19 +27,19 @@ export class MenuBar extends HTMLElement {
                 width: auto;
                 display: inline-block;
                 padding: 5px;
-            }
+            } 
 
             menu-bar svg {
                 left: 60px; bottom: 23px; 
                 position: relative;
             }
 
-            menu-bar a {
+            menu-bar code {
                 position: absolute; 
                 left: 10px; 
                 display: block; 
                 padding: 2.5px; 
-                font-size: 1.25em;
+                font-size: 1em;
             }
         `).replace("\n", "");
 
