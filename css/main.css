@@ -22,6 +22,7 @@ hr {
 .section {
     margin-bottom: 2rem;
     background-color: #303030;
+    padding: 15px;
 }
 
 @media (min-width: 576px) {
