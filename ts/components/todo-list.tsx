@@ -9,7 +9,12 @@ export class TodoList extends HTMLElement implements ITodoList {
         render((
             <fragment>
                 <div>
-                    <a className="text-info" $click={ this.clearItems.bind(this) }>Clear</a>
+                    <a className="text-info" $click={ this.clearItems.bind(this) }>
+                        Clear All Items
+                    </a>
+                    <a className="text-info" $click={ this.removeStorage.bind(this) }>
+                        Delete this list
+                    </a>
                 </div>
                 <div data-item-target></div>
             </fragment>
@@ -54,6 +59,14 @@ export class TodoList extends HTMLElement implements ITodoList {
         ).bind(this));
     }
 
+    removeStorage() {
+        if(confirm("Are you sure you want to delete this list?")) {
+           localStorage.removeItem(this.storageKey);
+           location.href = '/';
+        }
+    }
+
+    /* clear all */
     clearItems() {
         if(confirm("Are you sure you want to clear all items?")) {
             while(this.renderTarget.firstChild) {

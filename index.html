@@ -9,22 +9,30 @@
     <link href="css/main.css" rel="stylesheet"> 
 </head>
 <body>
+    <!-- Header -->
     <header class="jumbotron">
-        <code class="title h1">Productify</code>
+        <h1><code class="title">Productify</code></h1>
         <menu-bar></menu-bar>
     </header>
 
+    <!-- Lists View -->
     <section id="lists" class="text-center container section">
         <h2 class="text-left"><code>Lists:</code></h2>
+        <hr>
         <div id="listContainer" class="text-center" style="display: inline-block;"></div>
-        <br><br>
     </section>
 
+    <!-- Notes Section TODO -->
     <section id="notes" class="text-center container section">
         <h2 class="text-left"><code>Notes:</code></h2>
         <br><br>
     </section>
 
+    <!-- WC Polyfills -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.1/custom-elements-es5-adapter.js" integrity="sha256-t3CF/CSG7eF8WUulDvxPaqXIEqDU7fOQTEv1DHVdbFs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.1/webcomponents-loader.js" integrity="sha256-Ao3dDPJ8Vd/wf6kjL2MlHNo8vYEeLyvDg8k0njnNS7Y=" crossorigin="anonymous"></script>
+    
+    <!-- Main Script -->
     <script type="module" src="js/index.js"></script>
 </body>
 </html>

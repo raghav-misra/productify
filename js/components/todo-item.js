@@ -1,7 +1,24 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import { h, render } from '../helpers.js';
-const parentList = document.querySelector("todo-list");
-export class TodoItem extends HTMLElement {
-    connectedCallback() {
+var parentList = document.querySelector("todo-list");
+var TodoItem = /** @class */ (function (_super) {
+    __extends(TodoItem, _super);
+    function TodoItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TodoItem.prototype.connectedCallback = function () {
         // Render Children
         render((h("fragment", null,
             h("br", null),
@@ -11,17 +28,23 @@ export class TodoItem extends HTMLElement {
                     h("span", { "aria-hidden": "true" }, "\u00D7"))))), this);
         // Todo Text Target:
         this.textTarget = this.querySelector("[data-text-target]");
-    }
-    close() {
+    };
+    TodoItem.prototype.close = function () {
         parentList.removeItem(this);
-    }
-    changeTodo() {
+    };
+    TodoItem.prototype.changeTodo = function () {
         this.dataset.todo = this.textTarget.innerText;
         parentList.setStorage();
-    }
-    get todo() { return this.dataset.todo; }
-    set todo(newValue) {
-        this.dataset.todo = newValue;
-        this.textTarget.innerText = newValue;
-    }
-}
+    };
+    Object.defineProperty(TodoItem.prototype, "todo", {
+        get: function () { return this.dataset.todo; },
+        set: function (newValue) {
+            this.dataset.todo = newValue;
+            this.textTarget.innerText = newValue;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TodoItem;
+}(HTMLElement));
+export { TodoItem };

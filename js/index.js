@@ -6,8 +6,8 @@ MenuBar.define();
 import { ListPreview } from './components/list-preview.js';
 customElements.define("list-preview", ListPreview);
 /* Index localstorage entries */
-const listContainer = document.getElementById("listContainer");
-Object.keys(localStorage).forEach((key) => {
+var listContainer = document.getElementById("listContainer");
+Object.keys(localStorage).forEach(function (key) {
     if (key.startsWith("@list<>")) {
         render(h("list-preview", { "data-todo-list": key.replace("@list<>", ""), "data-items": JSON.parse(localStorage.getItem(key)).length }), listContainer);
     }

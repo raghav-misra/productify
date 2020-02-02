@@ -6,23 +6,24 @@ customElements.define("todo-item", TodoItem);
 customElements.define("todo-list", TodoList);
 MenuBar.define();
 /* Form Handling */
-let addTodoForm = document.forms[0];
-addTodoForm.addEventListener("submit", (event) => {
+var addTodoForm = document.forms[0];
+addTodoForm.addEventListener("submit", function (event) {
     event.preventDefault();
     todoList.addItem(addTodoForm.querySelector("input").value.trim());
 });
 /* TodoList Node */
-const todoList = document.querySelector("todo-list");
+var todoList = document.querySelector("todo-list");
 /* Choose localStorage entry */
-let storageKey = decodeURI(location.search.replace("?", "")).trim();
+var storageKey = decodeURI(location.search.replace("?", "")).trim();
 if (storageKey == "") {
-    const tmpKey = prompt("What is the name of your list? Or make a new list by typing in the desired name.") || "";
+    var tmpKey = prompt("What is the name of your list? Or make a new list by typing in the desired name.") || "";
     if (!tmpKey)
         location.href = "/";
     else
         storageKey = tmpKey.trim().toLowerCase();
+    location.search = "?" + storageKey;
 }
 todoList.storageKey = "@list<>" + storageKey;
 todoList.getStorage();
-document.getElementById("todoName").innerText = `${storageKey}`;
-document.querySelector("title").innerText = `Productify - ${storageKey}`;
+document.getElementById("todoName").innerText = "" + storageKey;
+document.querySelector("title").innerText = "Productify - " + storageKey;

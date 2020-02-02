@@ -10,14 +10,12 @@
 </head>
 <body>
     <header class="jumbotron">
-        <code class="title h1"><span id="todoName"></span></code>
+        <h1><code class="title"><span id="todoName">Productify</span></code></h1>
         <menu-bar></menu-bar>
-        <br><br><hr>
     </header>
 
     <section class="container section">
-        <code class="h2">Add An Item:</code>
-        <br><br>
+        <h2><code>Add An Item:</code></h2>
         <form class="input-group mb-3">
             <input type="text" class="form-control" placeholder="What do you need to do?" aria-label="What do you need to do?" required>
             <div class="input-group-append">
@@ -26,12 +24,17 @@
         </form>
     </section>
     <section class="container section">
-        <code class="h2">Your List:</code>
-        <br><br>
+        <h2><code>Your List:</code></h2>
+        <hr>
         <todo-list> 
         </todo-list>
     </section>
 
+    <!-- WC Polyfills -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.1/custom-elements-es5-adapter.js" integrity="sha256-t3CF/CSG7eF8WUulDvxPaqXIEqDU7fOQTEv1DHVdbFs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.1/webcomponents-loader.js" integrity="sha256-Ao3dDPJ8Vd/wf6kjL2MlHNo8vYEeLyvDg8k0njnNS7Y=" crossorigin="anonymous"></script>
+
+    <!-- Main Script controlling list -->
     <script type="module" src="js/todo-app.js"></script>
 </body>
 </html>

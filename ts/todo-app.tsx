@@ -27,6 +27,7 @@ if(storageKey == "") {
 
     if(!tmpKey) location.href = "/";
     else storageKey = tmpKey.trim().toLowerCase();
+    location.search = `?${storageKey}`;
 }
 
 todoList.storageKey = "@list<>" + storageKey;
