@@ -22,7 +22,7 @@ export class MenuBar extends HTMLElement {
         const style = <style></style>;
         style.innerText = (`
             menu-bar {
-                position: fixed;
+                position: absolute;
                 top: 5px; left: 0;
                 width: auto;
                 display: inline-block;
@@ -30,14 +30,14 @@ export class MenuBar extends HTMLElement {
             }
 
             menu-bar svg {
-                margin: 5px;
+                left: 60px; bottom: 23px; 
+                position: relative;
             }
 
             menu-bar a {
-                position: fixed;
-                left: 10px;
-                text-align: right !important; 
-                display: inline-block; 
+                position: absolute; 
+                left: 10px; 
+                display: block; 
                 padding: 2.5px; 
                 font-size: 1.25em;
             }

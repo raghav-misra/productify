@@ -14,11 +14,14 @@ hr {
     background-color: #e83e8c !important;
 }
 
+.back-dark {
+    background-color: #222 !important;
+}
+
 /* Better Container */
 .section {
     margin-bottom: 2rem;
     background-color: #303030;
-    border-radius: 0.3rem;
 }
 
 @media (min-width: 576px) {
@@ -40,6 +43,7 @@ hr {
 /* Constant Jumbo padding */
 .jumbotron {
     padding: 2rem 1rem !important;
+    border-radius: 0 !important;
 }
 
 /* Style Custom Elements */

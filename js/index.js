@@ -12,3 +12,10 @@ Object.keys(localStorage).forEach((key) => {
         render(h("list-preview", { "data-todo-list": key.replace("@list<>", ""), "data-items": JSON.parse(localStorage.getItem(key)).length }), listContainer);
     }
 });
+// RENDER create list button:
+render((h("div", { className: "card-inline card card-body back-dark" },
+    h("p", { className: "lead text-center" },
+        "Create a new list",
+        h("span", { className: "badge badge-pill badge-success back-pink", style: "margin-left: 5px;" },
+            h("b", null, "+"))),
+    h("a", { className: "full-width btn btn-outline-success", href: "/todo.html" }, "Add a list!"))), listContainer);
