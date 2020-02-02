@@ -76,6 +76,18 @@ export class TodoList extends HTMLElement implements ITodoList {
             this.setStorage();
         }
     }
+
+    static define() {
+        const style = <style></style>;
+        style.innerText = (`
+            todo-list a {
+                display: inline-block;
+                margin-right: 10px;
+            }
+        `);
+        document.body.appendChild(style);
+        customElements.define("todo-list", this);
+    }
 }
 
 export interface ITodoList {

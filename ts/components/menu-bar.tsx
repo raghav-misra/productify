@@ -23,7 +23,7 @@ export class MenuBar extends HTMLElement {
         style.innerText = (`
             menu-bar {
                 position: absolute;
-                top: 5px; left: 0;
+                top: 12.5px; left: 0;
                 width: auto;
                 display: inline-block;
                 padding: 5px;

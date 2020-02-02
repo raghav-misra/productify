@@ -3,7 +3,7 @@ import { TodoItem } from './components/todo-item.js';
 import { TodoList } from './components/todo-list.js';
 import { MenuBar } from './components/menu-bar.js';
 customElements.define("todo-item", TodoItem);
-customElements.define("todo-list", TodoList);
+TodoList.define();
 MenuBar.define();
 /* Form Handling */
 var addTodoForm = document.forms[0];

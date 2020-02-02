@@ -41,7 +41,7 @@ var MenuBar = /** @class */ (function (_super) {
     };
     MenuBar.loadStyles = function () {
         var style = h("style", null);
-        style.innerText = ("\n            menu-bar {\n                position: absolute;\n                top: 5px; left: 0;\n                width: auto;\n                display: inline-block;\n                padding: 5px;\n            } \n\n            menu-bar svg {\n                left: 60px; bottom: 23px; \n                position: relative;\n            }\n\n            menu-bar code {\n                position: absolute; \n                left: 10px; \n                display: block; \n                padding: 2.5px; \n                font-size: 1em;\n            }\n        ").replace("\n", "");
+        style.innerText = ("\n            menu-bar {\n                position: absolute;\n                top: 12.5px; left: 0;\n                width: auto;\n                display: inline-block;\n                padding: 5px;\n            } \n\n            menu-bar svg {\n                left: 60px; bottom: 23px; \n                position: relative;\n            }\n\n            menu-bar code {\n                position: absolute; \n                left: 10px; \n                display: block; \n                padding: 2.5px; \n                font-size: 1em;\n            }\n        ").replace("\n", "");
         document.body.appendChild(style);
     };
     MenuBar.define = function () {

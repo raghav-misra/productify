@@ -67,6 +67,12 @@ var TodoList = /** @class */ (function (_super) {
             this.setStorage();
         }
     };
+    TodoList.define = function () {
+        var style = h("style", null);
+        style.innerText = ("\n            todo-list a {\n                display: inline-block;\n                margin-right: 10px;\n            }\n        ");
+        document.body.appendChild(style);
+        customElements.define("todo-list", this);
+    };
     return TodoList;
 }(HTMLElement));
 export { TodoList };
